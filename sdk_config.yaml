@@ -1,0 +1,32 @@
+name: obortech-network
+version: 1.0.0
+client:
+  organization: org1
+  logging:
+    level: info
+  cryptoconfig:
+    path: msp
+
+channels:
+  mychannel:
+    peers:
+      peer0.org1.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+organizations:
+  org1:
+    mspid: Org1MSP
+    cryptoPath: test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    peers:
+      - peer0.org1.example.com
+peers:
+  peer0.org1.example.com:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      pem:
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      hostnameOverride: peer0.org1.example.com
